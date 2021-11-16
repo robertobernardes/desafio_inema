@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import inema.desafio.domains.Pessoa;
 import inema.desafio.domains.dtos.PessoaCreateDTO;
 import inema.desafio.repositories.PessoaRepository;
+import inema.desafio.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PessoaService {
@@ -47,5 +48,18 @@ public class PessoaService {
 		pessoaRepository.save(obj);
 		return obj;
 	}
+	
+	
+	/**
+	 * Método responsável por realizar a busca de uma pessoa através do Id 
+	 * @return Pessoa
+	 */
+	public Pessoa findById(Integer id) {
+		Pessoa obj = pessoaRepository.findById(id).orElse(null); 
+		if (obj == null) {
+			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pessoa.class.getName());
+		}
+		return obj;
+	}	
 
 }
