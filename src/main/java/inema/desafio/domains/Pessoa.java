@@ -2,34 +2,35 @@ package inema.desafio.domains;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table(name = "pessoa", schema = "gestor")
 public class Pessoa implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@SequenceGenerator(name = "sq_pessoa", sequenceName = "sq_pessoa", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_pessoa")
 	private Integer id;
 	private String nome;
-	private Integer cpf;
+	private String cpf;
 	private String email;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 	
-	@Column(name="st_excluido")
 	private boolean excluido;
 	
 	
-	public Pessoa(Integer id, String nome, Integer cpf, String email, boolean excluido) {
+	public Pessoa(Integer id, String nome, String cpf, String email, boolean excluido) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -54,11 +55,11 @@ public class Pessoa implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
