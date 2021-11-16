@@ -29,13 +29,16 @@ public class Pessoa implements Serializable {
 	
 	private boolean excluido;
 	
-	
-	public Pessoa(Integer id, String nome, String cpf, String email, boolean excluido) {
+
+	public Pessoa() {}
+
+	public Pessoa(Integer id, String nome, String cpf, String email, Endereco endereco, boolean excluido) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.endereco = endereco;
 		this.excluido = excluido;
 	}
 
