@@ -30,9 +30,9 @@ CREATE TABLE gestor.endereco
   id integer NOT NULL DEFAULT nextval('gestor.sq_endereco'::regclass),
   logradouro character varying(250) NOT NULL,
   bairro character varying(100) NOT NULL,
-  cep character varying(9),
-  numero integer NOT NULL,
-  complemento character varying(500) NOT NULL,  
+  cep character varying(9) NOT NULL,
+  numero integer,
+  complemento character varying(500),  
   excluido boolean NOT NULL DEFAULT false,
   CONSTRAINT pk_endereco PRIMARY KEY (id)
 )
@@ -66,8 +66,8 @@ CREATE TABLE gestor.pessoa
 (
   id integer NOT NULL DEFAULT nextval('gestor.sq_pessoa'::regclass),
   nome character varying(150) NOT NULL,
-  email character varying(50) NOT NULL,
-  cpf character varying(14),
+  email character varying(50),
+  cpf character varying(11) NOT NULL,
   id_endereco integer NOT NULL,
   excluido boolean NOT NULL DEFAULT false,
   CONSTRAINT pk_pessoa PRIMARY KEY (id),

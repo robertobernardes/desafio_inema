@@ -37,9 +37,9 @@ public class PessoaService {
 	public Pessoa insert(PessoaCreateDTO objPessoaDTO) {
 		Pessoa obj = new Pessoa(
 				null,
-				objPessoaDTO.getNome(),
-				objPessoaDTO.getCpf(),
-				objPessoaDTO.getEmail(),				
+				objPessoaDTO.getNome().trim(),
+				objPessoaDTO.getCpf().trim(),				
+				(objPessoaDTO.getEmail()!=null && !objPessoaDTO.getEmail().trim().isEmpty()) ? objPessoaDTO.getEmail().trim() : null,
 				enderecoService.insert(objPessoaDTO.getEndereco()),
 				false
 		);

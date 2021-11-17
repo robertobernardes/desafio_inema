@@ -2,11 +2,21 @@ package inema.desafio.domains.dtos;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class PessoaCreateDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@NotBlank(message = "Campo Nome é de preenchimento obrigatório!")
+	@Size(max = 150, message = "Tamanho máximo do Campo Nome são 150 caracteres")	
 	private String nome;
+	
+	@NotBlank(message = "Campo CPF é de preenchimento obrigatório!")
+	@Size(max = 11, message = "Tamanho máximo do Campo CPF são 11 caracteres")
 	private String cpf;
+	
+	@Size(max = 50, message = "Tamanho máximo do Campo E-mail são 50 caracteres")
 	private String email;
 	
 	private EnderecoCreateDTO endereco;

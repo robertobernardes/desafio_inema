@@ -3,6 +3,8 @@ package inema.desafio.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,7 +35,7 @@ public class PessoaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody PessoaCreateDTO objDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody PessoaCreateDTO objDto) {
 		Pessoa obj = pessoaService.insert(objDto);		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
