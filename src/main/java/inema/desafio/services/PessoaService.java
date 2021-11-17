@@ -22,14 +22,15 @@ public class PessoaService {
 	
 	/**
 	 * Método responsável por realizar a pesquisa de todas pessoas cadastradas 
-	 * @return List<Pessoa>
+	 * @return List (List<Pessoa>)
 	 */
 	public List<Pessoa> findAll() {
 		return pessoaRepository.findAll();
 	}
 	
 	/**
-	 * Método responsável por realizar o cadastro de pessoa 
+	 * Método responsável por realizar o cadastro de pessoa
+	 * @param obj (PessoaCreateDTO)
 	 * @return Pessoa
 	 */
 	@Transactional
@@ -50,9 +51,15 @@ public class PessoaService {
 		
 	/**
 	 * Método responsável por realizar a busca de uma pessoa através do Id 
+	 * @param ID (Integer)
 	 * @return Pessoa
 	 */
 	public Pessoa findById(Integer id) {
+		
+		if (id == null) {
+			throw new IllegalArgumentException("Campo ID é de preenchimento obrigatório!");
+		}
+		
 		Pessoa obj = pessoaRepository.findById(id).orElse(null); 
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pessoa.class.getName());
@@ -61,10 +68,16 @@ public class PessoaService {
 	}
 	
 	/**
-	 * Método responsável por deletar logicamente uma pessoa e seu endereço através do Id da pessoa	 
+	 * Método responsável por deletar logicamente uma pessoa e seu endereço através do Id da pessoa
+	 * @param ID (Integer)
 	 */
 	@Transactional
 	public void delete(Integer id) {
+		
+		if (id == null) {
+			throw new IllegalArgumentException("Campo ID é de preenchimento obrigatório!");
+		}
+		
 		Pessoa obj = findById(id);
 		
 		obj.setExcluido(true);
@@ -74,8 +87,17 @@ public class PessoaService {
 		pessoaRepository.save(obj);
 	}
 
+	/**
+	 * Método responsável por realizar a atualização de pessoa
+	 * @param ID (Integer), obj (PessoaCreateDTO)
+	 * @return Pessoa
+	 */
 	@Transactional
 	public Pessoa update(Integer id, PessoaCreateDTO objPessoaDTO) {
+		
+		if (id == null) {
+			throw new IllegalArgumentException("Campo ID é de preenchimento obrigatório!");
+		}
 		
 		//Buscando entidade de Pessoa
 		Pessoa obj = findById(id);

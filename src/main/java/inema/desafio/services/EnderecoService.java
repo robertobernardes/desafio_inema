@@ -16,7 +16,8 @@ public class EnderecoService {
 	private EnderecoRepository enderecoRepository;
 		
 	/**
-	 * Método responsável por realizar o cadastro do Endereço 
+	 * Método responsável por realizar o cadastro do Endereço
+	 * @param obj (EnderecoCreateDTO)
 	 * @return Endereco
 	 */
 	@Transactional
@@ -39,7 +40,8 @@ public class EnderecoService {
 	}
 	
 	/**
-	 * Método responsável por realizar a atualização do Endereço 
+	 * Método responsável por realizar a atualização do Endereço
+	 * @param obj (Endereco), obj (EnderecoCreateDTO),  
 	 * @return Endereco
 	 */
 	@Transactional

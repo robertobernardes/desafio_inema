@@ -18,4 +18,10 @@ public class ResourceExceptionHandler {
 		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<StandardError> illegalArgument(IllegalArgumentException e, HttpServletRequest request) {
+		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), "Dados inválidos.", System.currentTimeMillis(), e.getMessage());    	
+    	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	}
 }
