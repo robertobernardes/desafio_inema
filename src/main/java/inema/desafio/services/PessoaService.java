@@ -34,7 +34,6 @@ public class PessoaService {
 	 */
 	@Transactional
 	public Pessoa insert(PessoaCreateDTO objPessoaDTO) {
-		//Integer id, String nome, String cpf, String email, Endereco endereco, boolean excluido
 		Pessoa obj = new Pessoa(
 				null,
 				objPessoaDTO.getNome(),
@@ -48,8 +47,7 @@ public class PessoaService {
 		pessoaRepository.save(obj);
 		return obj;
 	}
-	
-	
+		
 	/**
 	 * Método responsável por realizar a busca de uma pessoa através do Id 
 	 * @return Pessoa
@@ -60,6 +58,19 @@ public class PessoaService {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Pessoa.class.getName());
 		}
 		return obj;
-	}	
+	}
+	
+	/**
+	 * Método responsável por deletar logicamente uma pessoa e seu endereço através do Id da pessoa	 
+	 */
+	public void delete(Integer id) {
+		Pessoa obj = findById(id);
+		
+		obj.setExcluido(true);
+		obj.getEndereco().setExcluido(true);
+		
+		//Salvando a entidade Pessoa
+		pessoaRepository.save(obj);
+	}
 
 }
