@@ -21,7 +21,7 @@
 
 ###### **1 - Clone do projeto:**
 
-`$ git clone git@github.com:robertobernardes/desafio_inema.git`
+​	`$ git clone git@github.com:robertobernardes/desafio_inema.git`
 
 
 
@@ -61,9 +61,7 @@
 
 ###### 		**4.2.1 - Na linha 4 - aonde se lê `localhost` substituir pelo seu servidor de banco de dados**
 
-###### 		**4.2.2 - Na linha 5 - aonde se lê `postgres` substituir pelo seu usuário do banco de dados**
-
-###### 		**4.2.3 - Na linha 6 - aonde se lê `123456` substituir pela sua senha de usuário de banco de dados**
+###### 		**4.2.2 - Na linha 6 - aonde se lê `123456` substituir pela sua senha do usuário `postgres` do banco de dados**
 
 
 
