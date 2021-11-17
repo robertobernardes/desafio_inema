@@ -32,10 +32,31 @@ public class EnderecoService {
 				false
 		);
 		
-		//Salvando a entidade Pessoa
+		//Salvando a entidade Endereco
 		enderecoRepository.save(obj);
 		
 		return obj;	
+	}
+	
+	/**
+	 * Método responsável por realizar a atualização do Endereço 
+	 * @return Endereco
+	 */
+	@Transactional
+	public Endereco update(Endereco objEndereco, EnderecoCreateDTO objEnderecoDTO) {
+		
+		//Populando a entidade de Endereco com os novos valores
+		objEndereco.setLogradouro(objEnderecoDTO.getLogradouro());
+		objEndereco.setNumero(objEnderecoDTO.getNumero());
+		objEndereco.setBairro(objEnderecoDTO.getBairro());
+		objEndereco.setCep(objEnderecoDTO.getCep());
+		objEndereco.setComplemento(objEnderecoDTO.getComplemento());
+		objEndereco.setExcluido(false);
+		
+		//Salvando a entidade Endereco
+		enderecoRepository.save(objEndereco);
+		
+		return objEndereco;	
 	}
 
 }

@@ -63,6 +63,7 @@ public class PessoaService {
 	/**
 	 * Método responsável por deletar logicamente uma pessoa e seu endereço através do Id da pessoa	 
 	 */
+	@Transactional
 	public void delete(Integer id) {
 		Pessoa obj = findById(id);
 		
@@ -73,4 +74,22 @@ public class PessoaService {
 		pessoaRepository.save(obj);
 	}
 
+	@Transactional
+	public Pessoa update(Integer id, PessoaCreateDTO objPessoaDTO) {
+		
+		//Buscando entidade de Pessoa
+		Pessoa obj = findById(id);
+		
+		//Populando a entidade de Pessoa com os novos valores
+		obj.setNome(objPessoaDTO.getNome());
+		obj.setCpf(objPessoaDTO.getCpf());
+		obj.setEmail(objPessoaDTO.getEmail());
+		obj.setEndereco(enderecoService.update(obj.getEndereco(), objPessoaDTO.getEndereco()));
+		obj.setExcluido(false);
+		
+		//Salvando a entidade Pessoa
+		pessoaRepository.save(obj);
+		
+		return obj;
+	}
 }
